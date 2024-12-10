@@ -113,7 +113,7 @@ class TrainingArgsConfig(RootConfig):
     learning_rate: float = 2e-5
     lr_scheduler_type: str = "linear"
     max_steps: int = (
-        1  # If set to a positive number, the total number of training steps to perform. Overrides `epochs`."
+        - 1  # If set to a positive number, the total number of training steps to perform. Overrides `epochs`."
     )
     # # In case of using a finite iterable dataset the training may stop before reaching the set number of steps"
     # # when all data is exhausted

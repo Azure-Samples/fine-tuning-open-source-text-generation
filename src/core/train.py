@@ -186,6 +186,7 @@ class TextGenerationTrainer:
             mlflow.transformers.log_model(
                 transformers_model={
                     "model": trainer.model,
+                    "tokenizer": tokenizer_no_pad,
                 },
                 artifact_path="adapter_peft",
             )

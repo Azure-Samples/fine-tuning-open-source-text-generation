@@ -181,7 +181,7 @@ class TextGenerationTrainer:
                     signature=self.signature,
                     artifact_path="model",
                 )
-            
+
             # Saving the adapter
             mlflow.transformers.log_model(
                 transformers_model={

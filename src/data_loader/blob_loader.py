@@ -54,7 +54,6 @@ class BlobStorageHandler:
             return None
 
 
-
 if __name__ == "__main__":
     # Example usage:
     # Load the workspace from the saved config file

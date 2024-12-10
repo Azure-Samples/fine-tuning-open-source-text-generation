@@ -396,3 +396,36 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+# Temporary files created by Azure Machine Learning
+*.amltmp
+*.amlignore
+*.gitattributes
+*amltmp
+
+# Local model
+*local_model_dir*
+*model_downloaded*
+*models*
+*pipeline_outputs*
+*samsum-dataset*
+*emotion-dataset*
+
+
+.ipynb_aml_checkpoints/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+
+# Llama
+
+*llama.cpp*
+*model_quantized*

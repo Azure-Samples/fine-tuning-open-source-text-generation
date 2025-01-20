@@ -425,7 +425,6 @@ env.bak/
 venv.bak/
 
 
-# Llama
+# MLflow
+mlruns/
 
-*llama.cpp*
-*model_quantized*

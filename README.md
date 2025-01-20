@@ -1,5 +1,4 @@
-# <img src="./docs/img//azure_logo.png" alt="Azure Logo" style="width:30px;height:30px;"/>
-# Fine Tuning Open Source LLM Models - QLora and Lora features implemented
+# <img src="./docs/img//azure_logo.png" alt="Azure Logo" style="width:30px;height:30px;"/> Fine Tuning Open Source LLM Models - QLora and Lora features implemented
 
 ## Overview
 Open-source LLMs are powerful but require fine-tuning for specific tasks like chatbots or content generation. Fine-tuning these models can be expensive due to the need for substantial VRAM. For instance, fully fine-tuning the Llama7B model requires 112GB of VRAM. However, techniques like QLoRA and PEFT can significantly reduce these requirements.
@@ -46,9 +45,9 @@ This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-devel
    The deployment creates multiple Azure resources and runs multiple jobs. It takes several minutes to complete. The deployment is complete when you get a command line notification stating "SUCCESS: Your up workflow to provision and deploy to Azure completed."
 
 
-# <img src="./docs/img/azure_workspace.png" alt="Azure Logo" style="width:100px;height:100px;"/>
+# <img src="./docs/img/azure_workspace.png" alt="Azure Logo" style="width:400px;height:400px;"/>
 
-### Quickstart
+## Quickstart
 
 ```bash
 git clone https://github.com/Azure-Samples/fine-tuning-open-source-text-generation.git
@@ -77,7 +76,7 @@ This uses `condaenv` instead of `poetryenv` because Azure Machine Learning is bu
 
 ### Setup your .env
 
-If your model requires a token, it should be set in the `.env` file.
+If your model (hugging face) requires a token, it should be set in the `.env` file.
 
 
 ## Config
@@ -92,7 +91,7 @@ A demo app is included to show how to use the project.
 To run the demo, follow these steps:
 
 1. Open the Jupyter Notebook file located in the `notebooks` folder.
-2. Run all the cells in the notebook to execute the demo.
+2. Run all the cells in the notebook to execute the demo text-to-sql-fine-tuning.
 3. The results will be displayed within the notebook cells. Open up your AML workspace to analyze the results bellow:
 
 

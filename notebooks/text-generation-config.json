@@ -1,0 +1,6 @@
+{
+    "metrics": ["rouge1", "rouge2"],
+    "enable_metric_confidence": true,
+    "confidence_metrics": ["rouge1"],
+    "use_binary": false
+  }

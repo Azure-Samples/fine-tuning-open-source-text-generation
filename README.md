@@ -45,7 +45,9 @@ This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-devel
    The deployment creates multiple Azure resources and runs multiple jobs. It takes several minutes to complete. The deployment is complete when you get a command line notification stating "SUCCESS: Your up workflow to provision and deploy to Azure completed."
 
 
-# <img src="./docs/img/azure_workspace.png" alt="Azure Logo" style="width:400px;height:400px;"/>
+<div align="center">
+    <img src="./docs/img/azure_workspace.png" alt="Azure Logo" style="width:400px;height:400px;"/>
+</div>
 
 ## Quickstart
 

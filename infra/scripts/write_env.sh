@@ -1,4 +1,3 @@
-$resourceGroup = ""
 envFilePath=".env"
 
 if [ -f "$envFilePath" ]; then
@@ -6,8 +5,8 @@ if [ -f "$envFilePath" ]; then
 fi
 touch "$envFilePath"
 
-
-echo "AZURE_RESOURCE_GROUP=$resourceGroup" >> "$envFilePath"
-echo "AZURE_SUBSCRIPTION_ID=$(az account show --query id -o tsv)" >> "$envFilePath"
-workspaceName=$(az ml workspace list --resource-group $resourceGroup)
-echo "AZUREML_WORKSPACE_NAME=$workspaceName" >> "$envFilePath"
+echo "AZURE_LOCATION=$(azd env get-value location)" >> "$envFilePath"
+echo "AZURE_TENANT_ID=$(azd env get-value 'tenant().tenantId')" >> "$envFilePath"
+echo "RESOURCE_GROUP=$(azd env get-value resourceGroupName)" >> "$envFilePath"
+echo "SUBSCRIPTION_ID=$(azd env get-value 'subscription().subscriptionId')" >> "$envFilePath"
+echo "WORKSPACE_NAME=$(azd env get-value '${workspacename}${resourceToken}')" >> "$envFilePath"

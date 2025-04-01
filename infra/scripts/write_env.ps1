@@ -1,4 +1,3 @@
-$resourceGroup = "KA-SAND-RG"
 $envFilePath = ".env"
 
 If (Test-Path $envFilePath) {
@@ -6,10 +5,9 @@ If (Test-Path $envFilePath) {
 }
 New-Item -Path $envFilePath -ItemType File -Force | Out-Null
 
-Add-Content -Path $envFilePath -Value ("AZURE_RESOURCE_GROUP=" + $resourceGroup)
-
-Add-Content -Path $envFilePath -Value ("AZURE_SUBSCRIPTION_ID=" + (az account show --query id -o tsv))
-
-$workspaceName = (az ml workspace list --resource-group $resourceGroup)
-Add-Content -Path $envFilePath -Value ("AZUREML_WORKSPACE_NAME=" + $workspaceName)
-
+# Added outputs
+Add-Content -Path $envFilePath -Value ("AZURE_LOCATION=" + (azd env get-value location))
+Add-Content -Path $envFilePath -Value ("AZURE_TENANT_ID=" + (azd env get-value tenantId))
+Add-Content -Path $envFilePath -Value ("RESOURCE_GROUP=" + (azd env get-value resourceGroupName))
+Add-Content -Path $envFilePath -Value ("SUBSCRIPTION_ID=" + (azd env get-value subscriptionId))
+Add-Content -Path $envFilePath -Value ("WORKSPACE_NAME=" + '${workspacename}${resourceToken}')

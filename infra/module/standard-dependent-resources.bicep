@@ -21,6 +21,16 @@ param aiServiceAccountResourceId string
 @description('The AI Storage Account full ARM Resource ID. This is an optional field, and if not provided, the resource will be created.')
 param aiStorageAccountResourceId string 
 
+@description('Unique token for the resource name')
+param resourceToken string
+
+@description('Name of the Azure Container Registry')
+param containerRegistryName string = '${resourceToken}acr'
+
+@description('Application Insights resource name')
+param applicationInsightsName string = '${resourceToken}ai'
+
+
 var aiServiceExists = aiServiceAccountResourceId != ''
 var aiStorageExists = aiStorageAccountResourceId != ''
 
@@ -86,6 +96,28 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-05-01' = if(!aiStorageE
   }
 }
 
+
+
+resource applicationInsight 'Microsoft.Insights/components@2020-02-02' = {
+  name: applicationInsightsName
+  location: location
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+  }
+}
+
+resource registry 'Microsoft.ContainerRegistry/registries@2022-02-01-preview' = {
+  sku: {
+    name: 'Standard'
+  }
+  name: containerRegistryName
+  location: location
+  properties: {
+    adminUserEnabled: false
+  }
+}
+
 output aiServicesName string =  aiServiceExists ? existingAIServiceAccount.name : aiServicesName
 output aiServiceAccountResourceGroupName string = aiServiceExists ? aiServiceParts[4] : resourceGroup().name
 output aiServiceAccountSubscriptionId string = aiServiceExists ? aiServiceParts[2] : subscription().subscriptionId 
@@ -96,3 +128,6 @@ output storageAccountResourceGroupName string = aiStorageExists ? aiStorageParts
 output storageAccountSubscriptionId string = aiStorageExists ? aiStorageParts[2] : subscription().subscriptionId
 
 output keyvaultId string = keyVault.id
+
+output containerRegistryId string = registry.id
+output applicationInsightsId string = applicationInsight.id

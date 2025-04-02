@@ -33,6 +33,7 @@ def setup_tokenizer(
     apply_qlora: bool,
     token: str,
     prompt_template: str,
+    use_conda: bool,
 ) -> None:
     """
     Sets up the tokenizer and model for training, tokenizes the training dataset, and initiates the training process.
@@ -95,6 +96,7 @@ def setup_tokenizer(
         apply_qlora,
         token,
         prompt_template,
+        use_conda,
     )
 
 
@@ -110,6 +112,7 @@ def setup_model(
     apply_qlora: bool,
     token: str,
     prompt_template: str,
+    use_conda: bool,
 ) -> None:
     """
     Sets up the model for training and initiates the training process.
@@ -179,6 +182,7 @@ def setup_model(
         base_model_id=base_model_id,
         apply_lora=apply_lora,
         prompt_template=prompt_template,
+        use_conda_yaml=use_conda,
     )
 
     trainer.train_model(tokenized_train_dataset)
@@ -206,6 +210,14 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "--max_length", type=int, required=True, help="Max length for tokenization"
+    )
+
+    parser.add_argument(
+        "--use_conda",
+        type=bool,
+        required=False,
+        default=False,
+        help="Use conda.yaml or not",
     )
 
     parser.add_argument(
@@ -273,4 +285,5 @@ if __name__ == "__main__":
         args.apply_qlora,
         args.token,
         args.prompt_template,
+        args.use_conda,
     )

@@ -1,4 +1,4 @@
-# Fine Tuning Open Source LLM Models - QLora and Lora features implemented
+# <img src="./docs/img//azure_logo.png" alt="Azure Logo" style="width:30px;height:30px;"/> Fine Tuning Open Source LLM Models - QLora and Lora features implemented
 
 ## Overview
 Open-source LLMs are powerful but require fine-tuning for specific tasks like chatbots or content generation. Fine-tuning these models can be expensive due to the need for substantial VRAM. For instance, fully fine-tuning the Llama7B model requires 112GB of VRAM. However, techniques like QLoRA and PEFT can significantly reduce these requirements.
@@ -15,15 +15,41 @@ We can load models from various sources: azure model catalog, local folder, or t
 4. Save prompt templates and inference parameters in MLflow for simplified prediction interfaces.
 
 
-#### Key Components - Main Notebook
+### Key Components - Main Notebook
 * [teknium/OpenHermes-2.5-Mistral-7B](https://huggingface.co/teknium/OpenHermes-2.5-Mistral-7B): A 7-billion parameter text-generation model optimized with techniques like Group-Query Attention and Sliding-Window Attention.
 * [QLoRA](https://github.com/artidoro/qlora): Reduces trainable parameters and applies 4-bit quantization to minimize memory usage.
 * [PEFT](https://huggingface.co/docs/peft/en/index): Simplifies the integration of optimization methods with pretrained models.
 * [MLflow](https://mlflow.org/): Manages configurations, assets, and metrics during LLM training, integrated with Transformers and PEFT.
 
-##  Setup
 
-### Quickstart
+## Prerequisites
++ [azd](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd), used to deploy all Azure resources and assets used in this sample.
+
++ [PowerShell Core pwsh](https://github.com/PowerShell/powershell/releases) if using Windows
+
++ Python 3.11
+
+## Setup environment
+
+This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-developer-cli/) and a bicep template to deploy all Azure resources, including the Azure OpenAI models.
+
+1. Login to your Azure account: `azd auth login`
+
+2. Create an environment: `azd env new`
+
+3. Run `azd up`.
+
+   + Choose a name for your resourge group.
+   + Enter a region for the resources.
+
+   The deployment creates multiple Azure resources and runs multiple jobs. It takes several minutes to complete. The deployment is complete when you get a command line notification stating "SUCCESS: Your up workflow to provision and deploy to Azure completed."
+
+
+<div align="center">
+    <img src="./docs/img/azure_workspace.png" alt="Azure Logo" style="width:400px;height:400px;"/>
+</div>
+
+## Quickstart
 
 ```bash
 git clone https://github.com/Azure-Samples/fine-tuning-open-source-text-generation.git
@@ -52,7 +78,7 @@ This uses `condaenv` instead of `poetryenv` because Azure Machine Learning is bu
 
 ### Setup your .env
 
-If your model requires a token, it should be set in the `.env` file.
+If your model (hugging face) requires a token, it should be set in the `.env` file.
 
 
 ## Config
@@ -67,7 +93,7 @@ A demo app is included to show how to use the project.
 To run the demo, follow these steps:
 
 1. Open the Jupyter Notebook file located in the `notebooks` folder.
-2. Run all the cells in the notebook to execute the demo.
+2. Run all the cells in the notebook to execute the demo text-to-sql-fine-tuning.
 3. The results will be displayed within the notebook cells. Open up your AML workspace to analyze the results bellow:
 
 
@@ -83,9 +109,9 @@ If you have integrated MLflow with your job, you can also check the MLflow run a
 
 Here is an example of the expected output:
 
-![Demo Result](src/docs/img/job.png)
+![Demo Result](./docs/img/job.png)
 
-![Output Files](src/docs/img/output.png)
+![Output Files](./docs/img/output.png)
 
 
 ## Contributing
